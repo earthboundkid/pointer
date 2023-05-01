@@ -6,5 +6,6 @@ Some generic Go pointer helpers:
 var strptr *string
 fmt.Println(pointer.Deref(strptr) == "") // prints true
 fmt.Println(pointer.Coalesce(strptr, "hello, world")) // prints "hello, world"
-strptr = pointer.From("meaning of life")
+newptr := pointer.From("meaning of life") // take a pointer to a string, wow!
+strptr = pointer.First(strptr, newptr) // return the first non-nil pointer
 ```
