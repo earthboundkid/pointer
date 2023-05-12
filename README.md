@@ -3,9 +3,18 @@
 Some generic Go pointer helpers:
 
 ```go
+// Start with a null pointer
 var strptr *string
+
+// pointer.Deref safely dereferences a nil pointer into its empty value
 fmt.Println(pointer.Deref(strptr) == "") // prints true
+
+// pointer.Coalesce lets us specify a default value for a nil pointer
 fmt.Println(pointer.Coalesce(strptr, "hello, world")) // prints "hello, world"
-newptr := pointer.From("meaning of life") // take a pointer to a string, wow!
-strptr = pointer.First(strptr, newptr) // return the first non-nil pointer
+
+// We can create a pointer to a string or other primitive type with pointer.New
+newptr := pointer.New("meaning of life") // takes a pointer to a string, wow!
+
+// pointer.First returns the first pointer that isn't nil.
+strptr = pointer.First(strptr, newptr) // returns newptr
 ```
